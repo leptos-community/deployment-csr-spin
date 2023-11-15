@@ -3,8 +3,35 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Leptos + Spin</title>
   
-<link rel="preload" href="/leptos-with-spin-c57a994570658968_bg.wasm" as="fetch" type="application/wasm" crossorigin="">
-<link rel="modulepreload" href="/leptos-with-spin-c57a994570658968.js"></head>
+<link rel="preload" href="/leptos-with-spin-3c54a523f998021d_bg.wasm" as="fetch" type="application/wasm" crossorigin="">
+<link rel="modulepreload" href="/leptos-with-spin-3c54a523f998021d.js"></head>
   <body>
 
-<script type="module">import init from '/leptos-with-spin-c57a994570658968.js';init('/leptos-with-spin-c57a994570658968_bg.wasm');</script></body></html>
+<script type="module">import init from '/leptos-with-spin-3c54a523f998021d.js';init('/leptos-with-spin-3c54a523f998021d_bg.wasm');</script><script>(function () {
+    var protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
+    var url = protocol + '//' + window.location.host + '/_trunk/ws';
+    var poll_interval = 5000;
+    var reload_upon_connect = () => {
+        window.setTimeout(
+            () => {
+                // when we successfully reconnect, we'll force a
+                // reload (since we presumably lost connection to
+                // trunk due to it being killed, so it will have
+                // rebuilt on restart)
+                var ws = new WebSocket(url);
+                ws.onopen = () => window.location.reload();
+                ws.onclose = reload_upon_connect;
+            },
+            poll_interval);
+    };
+
+    var ws = new WebSocket(url);
+    ws.onmessage = (ev) => {
+        const msg = JSON.parse(ev.data);
+        if (msg.reload) {
+            window.location.reload();
+        }
+    };
+    ws.onclose = reload_upon_connect;
+})()
+</script></body></html>
