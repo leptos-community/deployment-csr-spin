@@ -5,7 +5,7 @@ fn App() -> impl IntoView {
     let (count, set_count) = create_signal(0);
 
     view! {
-        <h1>"Hello from Leptos (and Spin?)"</h1>
+        <h1>"Hello from Leptos and Spin"</h1>
 
         <button
             on:click=move |_| {

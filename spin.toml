@@ -7,7 +7,7 @@ authors = ["Diversable <dan.mantei@outlook.com>"]
 description = "deploy a leptos CSR app with Spin"
 
 [[trigger.http]]
-route = "/static/..."
+route = "/..."
 component = "leptos-with-spin"
 
 [component.leptos-with-spin]
