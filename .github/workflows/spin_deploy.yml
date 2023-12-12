@@ -20,13 +20,13 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  Github-Pages-Release:
+  Spin-Release:
 
     timeout-minutes: 10
 
-    # environment:
-    #   name: github
-    #   url: ${{ steps.deployment.outputs.page_url }}
+    environment:
+      name: github
+      url: ${{ steps.deployment.outputs.page_url }}
 
     runs-on: ubuntu-latest
 
@@ -59,7 +59,6 @@ jobs:
         run: ./trunk build --release
 
 
-
       # Install Spin CLI & Deploy
 
       - name: Install Spin
@@ -67,6 +66,7 @@ jobs:
 
 
       - name: Build and deploy
+        id: deployment
         uses: fermyon/actions/spin/deploy@v1
         with:
           fermyon_token: ${{ secrets.FERMYON_CLOUD_TOKEN }}
