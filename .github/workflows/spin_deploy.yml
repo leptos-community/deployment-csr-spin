@@ -1,9 +1,10 @@
 # For setup instructions needed for Fermyon Cloud, see:
 # https://developer.fermyon.com/cloud/github-actions
-# and
+
+# For reference, see:
 # https://developer.fermyon.com/cloud/changelog/gh-actions-spin-deploy
 
-# For the gh actions themselves, see:
+# For the Fermyon gh actions themselves, see:
 # https://github.com/fermyon/actions
 
 name: Release to Spin Cloud
@@ -14,8 +15,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  # contents: write # for committing to gh-pages branch.
-  # pages: write
+  contents: read
   id-token: write
 
 # Allow only one concurrent deployment, skipping runs queued between the run in-progress and latest queued.
