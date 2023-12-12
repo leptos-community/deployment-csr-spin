@@ -1,5 +1,10 @@
-# For reference, see:
+# For setup instructions needed for Fermyon Cloud, see:
 # https://developer.fermyon.com/cloud/github-actions
+# and
+# https://developer.fermyon.com/cloud/changelog/gh-actions-spin-deploy
+
+# For the gh actions themselves, see:
+# https://github.com/fermyon/actions
 
 name: Release to Spin Cloud
 
@@ -25,7 +30,7 @@ jobs:
     timeout-minutes: 10
 
     environment:
-      name: spin
+      name: github
       url: ${{ steps.deployment.outputs.app_url }}
 
     runs-on: ubuntu-latest
