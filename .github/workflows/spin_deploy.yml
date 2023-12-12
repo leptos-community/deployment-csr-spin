@@ -1,0 +1,72 @@
+# For reference, see:
+# https://developer.fermyon.com/cloud/github-actions
+
+name: Release to Spin Cloud
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  # contents: write # for committing to gh-pages branch.
+  # pages: write
+  id-token: write
+
+# Allow only one concurrent deployment, skipping runs queued between the run in-progress and latest queued.
+# However, do NOT cancel in-progress runs as we want to allow these production deployments to complete.
+concurrency:
+  group: "spin"
+  cancel-in-progress: false
+
+jobs:
+  Github-Pages-Release:
+
+    timeout-minutes: 10
+
+    # environment:
+    #   name: github
+    #   url: ${{ steps.deployment.outputs.page_url }}
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4 # repo checkout
+
+      # Install Rust Nightly Toolchain, with Clippy & Rustfmt
+      - name: Install nightly Rust
+        uses: dtolnay/rust-toolchain@nightly
+        with:
+          components: clippy, rustfmt
+
+      - name: Add WASM & WASI targets
+        run: rustup target add wasm32-unknown-unknown && rustup target add wasm32-wasi
+
+      - name: lint
+        run: cargo clippy & cargo fmt
+
+
+      # If using tailwind...
+      # - name: Download and install tailwindcss binary
+      #   run: npm install -D tailwindcss && npx tailwindcss -i <INPUT/PATH.css> -o <OUTPUT/PATH.css>  # run tailwind
+
+
+      - name: Download and install Trunk binary
+        run: wget -qO- https://github.com/trunk-rs/trunk/releases/download/v0.17.5/trunk-x86_64-unknown-linux-gnu.tar.gz | tar -xzf-
+
+
+      - name: Build with Trunk
+        run: ./trunk build --release
+
+
+
+      # Install Spin CLI & Deploy
+
+      - name: Install Spin
+        uses: fermyon/actions/spin/setup@v1
+
+
+      - name: Build and deploy
+        uses: fermyon/actions/spin/deploy@v1
+        with:
+          fermyon_token: ${{ secrets.FERMYON_CLOUD_TOKEN }}
