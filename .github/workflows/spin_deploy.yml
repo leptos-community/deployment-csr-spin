@@ -31,7 +31,7 @@ jobs:
 
     environment:
       name: github
-      url: ${{ steps.deployment.outputs.app_url }}
+      url: ${{ steps.deployment.outputs.app-url }}
 
     runs-on: ubuntu-latest
 
@@ -57,7 +57,7 @@ jobs:
 
 
       - name: Download and install Trunk binary
-        run: wget -qO- https://github.com/trunk-rs/trunk/releases/download/v0.17.5/trunk-x86_64-unknown-linux-gnu.tar.gz | tar -xzf-
+        run: wget -qO- https://github.com/trunk-rs/trunk/releases/download/v0.18.0/trunk-x86_64-unknown-linux-gnu.tar.gz | tar -xzf-
 
 
       - name: Build with Trunk
@@ -78,6 +78,7 @@ jobs:
         with:
           fermyon_token: ${{ secrets.FERMYON_CLOUD_TOKEN }}
 
+
       - name: Deployed URL
         run: |
-          echo "Deployed app URL: ${{ steps.deployment.outputs.app_url }}" >> $GITHUB_STEP_SUMMARY
+          echo "Deployed app URL: ${{ steps.deployment.outputs.app-url }}" >> $GITHUB_STEP_SUMMARY
