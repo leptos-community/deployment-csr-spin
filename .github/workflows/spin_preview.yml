@@ -17,8 +17,7 @@ on:
   workflow_dispatch:
 
 permissions:
-#   contents: read
-#   id-token: write
+  contents: read
   pull-requests: write
 
 # Allow only one concurrent deployment, skipping runs queued between the run in-progress and latest queued.
