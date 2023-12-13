@@ -78,6 +78,6 @@ jobs:
         with:
           fermyon_token: ${{ secrets.FERMYON_CLOUD_TOKEN }}
 
-      - name: Deployed
+      - name: Deployed URL
         run: |
           echo "Deployed app URL: ${{ steps.deployment.outputs.app_url }}" >> $GITHUB_STEP_SUMMARY
