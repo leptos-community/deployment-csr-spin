@@ -18,7 +18,6 @@ on:
 
 permissions:
   contents: read
-  id-token: write
   pull-requests: write
 
 # Allow only one concurrent deployment, skipping runs queued between the run in-progress and latest queued.
