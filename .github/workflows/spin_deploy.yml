@@ -77,6 +77,12 @@ jobs:
         uses: fermyon/actions/spin/deploy@v1
         with:
           fermyon_token: ${{ secrets.FERMYON_CLOUD_TOKEN }}
+          # key_values: |-
+            # abc=xyz
+            # foo=bar
+          # variables: |-
+            # password=${{ secrets.SECURE_PASSWORD }}
+            # apikey=${{ secrets.API_KEY }}
 
       # Create an explicit message to display the URL of the deployed app, as well as in the job graph
       - name: Deployed URL

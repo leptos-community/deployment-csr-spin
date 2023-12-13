@@ -82,6 +82,12 @@ jobs:
           fermyon_token: ${{ secrets.FERMYON_CLOUD_TOKEN }}
           github_token: ${{ secrets.GITHUB_TOKEN }}
           undeploy: ${{ github.event.pull_request && github.event.action == 'closed' }}
+          # key_values: |-
+            # abc=xyz
+            # foo=bar
+          # variables: |-
+            # password=${{ secrets.SECURE_PASSWORD }}
+            # apikey=${{ secrets.API_KEY }}
 
 
       - name: Display Deployed URL
