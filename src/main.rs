@@ -7,8 +7,6 @@ fn App() -> impl IntoView {
     view! {
         <h1>"Hello from Leptos and Spin"</h1>
 
-        <h2>"This is a test of Spin Cloud Preview"</h2>
-
         <p>
             "For ease of development, run `trunk watch` in one terminal while also running `spin watch` in another terminal -- on changes, the only thing you need to do is reload the browser window: Leptos and Spin will take care of the rest!"
         </p>
