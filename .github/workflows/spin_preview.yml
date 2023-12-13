@@ -34,7 +34,7 @@ jobs:
     environment:
       name: github
       # NB: CHANGE THIS TO `app_url` WHEN FERMYON FIXES THE BUG IN THEIR GH ACTION
-      url: ${{ steps.deployment.outputs.app-url }}
+      url: ${{ steps.deployment.outputs.app_url }}
 
     runs-on: ubuntu-latest
 
@@ -81,4 +81,4 @@ jobs:
         with:
           fermyon_token: ${{ secrets.FERMYON_CLOUD_TOKEN }}
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          undeploy: ${{ github.event.pull_request && github.event.action == 'closed' }}
+        #   undeploy: ${{ github.event.pull_request && github.event.action == 'closed' }}
