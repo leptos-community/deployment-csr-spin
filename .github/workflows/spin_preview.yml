@@ -81,9 +81,9 @@ jobs:
         with:
           fermyon_token: ${{ secrets.FERMYON_CLOUD_TOKEN }}
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          undeploy: false
+          undeploy: ${{ github.event.pull_request && github.event.action == 'closed' }}
 
 
-      - name: Deployed URL
+      - name: Display Deployed URL
         run: |
           echo "Deployed app URL: ${{ steps.deployment.outputs.app_url }}" >> $GITHUB_STEP_SUMMARY
