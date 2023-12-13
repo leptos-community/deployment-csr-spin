@@ -34,7 +34,7 @@ jobs:
     environment:
       name: github
       # NB: CHANGE THIS TO `app_url` WHEN FERMYON FIXES THE BUG IN THEIR GH ACTION
-      url: ${{ steps.deployment.outputs.app_url }}
+      url: ${{ steps.deployment.outputs.app-url }}
 
     runs-on: ubuntu-latest
 
