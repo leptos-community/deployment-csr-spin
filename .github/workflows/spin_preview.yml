@@ -81,3 +81,4 @@ jobs:
         with:
           fermyon_token: ${{ secrets.FERMYON_CLOUD_TOKEN }}
           github_token: ${{ secrets.GITHUB_TOKEN }}
+          undeploy: true
