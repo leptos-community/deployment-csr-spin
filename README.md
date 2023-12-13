@@ -3,7 +3,7 @@
     <img src="https://raw.githubusercontent.com/leptos-rs/leptos/main/docs/logos/Leptos_logo_RGB.svg" alt="Leptos Logo">
 </picture>
 
-# Deploy Leptos CSR on Spin
+# Deploy Leptos CSR Apps on Spin
 
 After installing both the Spin framework and Leptos, then clone this repo and run `trunk watch` in one terminal while also running `spin watch` in another terminal -- when making changes in your Leptos app, the only thing you need to do is reload the browser window: Leptos and Spin will take care of the rest!
 
