@@ -75,14 +75,15 @@ jobs:
           # plugins:
 
 
-      - name: Deployed URL
-        run: |
-          echo "Deployed app URL: ${{ steps.deployment.outputs.app_url }}" >> $GITHUB_STEP_SUMMARY
-
-
       - name: Build and preview
         id: deployment
         uses: fermyon/actions/spin/preview@v1
         with:
           fermyon_token: ${{ secrets.FERMYON_CLOUD_TOKEN }}
           github_token: ${{ secrets.GITHUB_TOKEN }}
+          undeploy: false
+
+
+      - name: Deployed URL
+        run: |
+          echo "Deployed app URL: ${{ steps.deployment.outputs.app_url }}" >> $GITHUB_STEP_SUMMARY
