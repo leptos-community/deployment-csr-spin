@@ -32,9 +32,9 @@ jobs:
     timeout-minutes: 10
 
     environment:
-      name: github
+      name: preview
       # NB: CHANGE THIS TO `app_url` WHEN FERMYON FIXES THE BUG IN THEIR GH ACTION
-      url: ${{ steps.deployment.outputs.app-url }}
+      url: ${{ steps.deployment.outputs.app_url }}
 
     runs-on: ubuntu-latest
 
