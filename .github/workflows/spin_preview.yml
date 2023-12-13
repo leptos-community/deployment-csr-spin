@@ -1,11 +1,12 @@
 # For setup instructions needed for Fermyon Cloud, see:
 # https://developer.fermyon.com/cloud/github-actions
 
-# For reference, see:
-# https://developer.fermyon.com/cloud/changelog/gh-actions-spin-deploy
 
 # For the Fermyon gh actions themselves, see:
 # https://github.com/fermyon/actions
+
+# Specifically:
+# https://github.com/fermyon/actions?tab=readme-ov-file#deploy-preview-of-spin-app-to-fermyon-cloud---fermyonactionsspinpreviewv1
 
 name: Preview on Spin Cloud
 
@@ -32,7 +33,7 @@ jobs:
 
     environment:
       name: github
-	  # NB: CHANGE THIS TO `app_url` WHEN FERMYON FIXES THE BUG IN THEIR GH ACTION
+      # NB: CHANGE THIS TO `app_url` WHEN FERMYON FIXES THE BUG IN THEIR GH ACTION
       url: ${{ steps.deployment.outputs.app-url }}
 
     runs-on: ubuntu-latest
@@ -74,8 +75,10 @@ jobs:
           # plugins:
 
 
-      - name: Build and deploy
+      - name: Build and preview
         id: deployment
-        uses: fermyon/actions/spin/deploy@v1
+        uses: fermyon/actions/spin/preview@v1
         with:
           fermyon_token: ${{ secrets.FERMYON_CLOUD_TOKEN }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          undeploy: ${{ github.event.pull_request && github.event.action == 'closed' }}
