@@ -7,7 +7,7 @@
 # For the Fermyon gh actions themselves, see:
 # https://github.com/fermyon/actions
 
-name: Release to Spin Cloud
+name: Preview on Spin Cloud
 
 on:
   pull_request:
@@ -32,7 +32,8 @@ jobs:
 
     environment:
       name: github
-      url: ${{ steps.deployment.outputs.app_url }}
+	  # NB: CHANGE THIS TO `app_url` WHEN FERMYON FIXES THE BUG IN THEIR GH ACTION
+      url: ${{ steps.deployment.outputs.app-url }}
 
     runs-on: ubuntu-latest
 

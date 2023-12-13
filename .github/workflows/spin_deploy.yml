@@ -31,6 +31,7 @@ jobs:
 
     environment:
       name: github
+      # NB: CHANGE THIS TO `app_url` WHEN FERMYON FIXES THE BUG IN THEIR GH ACTION
       url: ${{ steps.deployment.outputs.app-url }}
 
     runs-on: ubuntu-latest
@@ -78,7 +79,7 @@ jobs:
         with:
           fermyon_token: ${{ secrets.FERMYON_CLOUD_TOKEN }}
 
-
-      - name: Deployed URL
-        run: |
-          echo "Deployed app URL: ${{ steps.deployment.outputs.app-url }}" >> $GITHUB_STEP_SUMMARY
+      # Create an explicit message to display the URL of the deployed app, as well as in the job graph
+      # - name: Deployed URL
+      #   run: |
+      #     echo "Deployed app URL: ${{ steps.deployment.outputs.app-url }}" >> $GITHUB_STEP_SUMMARY
