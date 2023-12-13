@@ -34,7 +34,7 @@ jobs:
     environment:
       name: preview
       # NB: CHANGE THIS TO `app_url` WHEN FERMYON FIXES THE BUG IN THEIR GH ACTION
-      url: ${{ steps.deployment.outputs.app_url }}
+      url: ${{ steps.preview.outputs.app-url }}
 
     runs-on: ubuntu-latest
 
@@ -76,7 +76,7 @@ jobs:
 
 
       - name: Build and preview
-        id: deployment
+        id: preview
         uses: fermyon/actions/spin/preview@v1
         with:
           fermyon_token: ${{ secrets.FERMYON_CLOUD_TOKEN }}
@@ -86,4 +86,4 @@ jobs:
 
       - name: Display Deployed URL
         run: |
-          echo "Deployed app URL: ${{ steps.deployment.outputs.app_url }}" >> $GITHUB_STEP_SUMMARY
+          echo "Deployed app URL: ${{ steps.preview.outputs.app-url }}" >> $GITHUB_STEP_SUMMARY
